@@ -24,6 +24,7 @@ io.on("connection", async (socket) => {
       data = JSON.parse(data);
       io.to(data.to).emit("server_to_browser", { msg: data.msg} );
     });
+    
     socket.on("close_to_server", (data) =>  {
       io.emit("close_app", { chatID: chatID } );
     });
