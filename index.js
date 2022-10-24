@@ -12,7 +12,7 @@ io.on("connection", async (socket) => {
     // console.log(chatID);
     // join the "userID" room
     socket.join(chatID);
-    
+
     socket.on("browser_to_server", (data) =>  {
       // console.log(data);
       io.emit("server_to_app", { chatID: chatID , msg: data.msg} );
@@ -34,3 +34,4 @@ io.on("disconnect", (reason) => {
 Http.listen(4040, () => {
   console.log("Server up and running...");
 });
+
