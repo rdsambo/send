@@ -14,13 +14,13 @@ io.on("connection", async (socket) => {
     socket.join(chatID);
 
     socket.on("browser_to_server", (data) =>  {
-      // console.log(data);
+      console.log(data);
       io.emit("server_to_app", { chatID: chatID , msg: data.msg} );
     });
   } else {
     // console.log("sem chatID");
     socket.on("app_to_server", (data) =>  {
-      // console.log(data);
+      console.log(data);
       data = JSON.parse(data);
       io.to(data.to).emit("server_to_browser", { msg: data.msg} );
     });
