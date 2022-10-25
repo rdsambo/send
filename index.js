@@ -35,7 +35,7 @@ io.on("connection", async (socket) => {
   }
 });
 
-io.on("disconnect", (reason) => {
+io.on("disconnection", (reason) => {
   console.log("reason");
   console.log(reason);
   // "ping timeout"
