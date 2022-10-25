@@ -25,7 +25,7 @@ io.on("connection", async (socket) => {
       console.log("close_to_server");
       console.log(data);
       io.emit("close_app", { chatID: chatID } );
-      socket.dsconnect();
+      socket.disconnect();
     });
   } else {
     // console.log("sem chatID");
