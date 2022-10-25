@@ -40,7 +40,6 @@ io.on("connection", async (socket) => {
 io.on("disconnection", (reason) => {
   console.log("reason");
   console.log(reason);
-  // "ping timeout"
 });
 
 Http.listen(4040, () => {
