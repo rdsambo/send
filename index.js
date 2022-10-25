@@ -19,7 +19,8 @@ io.on("connection", async (socket) => {
       console.log(data);
       io.emit("server_to_app", { chatID: chatID , msg: data.msg} );
     });
-
+    
+    console.log("reg close_to_server");
     socket.on("close_to_server", (data) =>  {
       console.log("close_to_server");
       console.log(data);
