@@ -1,3 +1,5 @@
+const { log } = require("console");
+
 const Express = require("express")();
 const Http = require("http").Server(Express);
 const io = require("socket.io")(Http, {
@@ -26,14 +28,17 @@ io.on("connection", async (socket) => {
     });
 
     socket.on("close_to_server", (data) =>  {
+      console.log("close_to_server");
+      console.log(data);
       io.emit("close_app", { chatID: chatID } );
     });
   }
 });
 
 io.on("disconnect", (reason) => {
+  console.log("reason");
+  console.log(reason);
   // "ping timeout"
-  // console.log(reason);
 });
 
 Http.listen(4040, () => {
