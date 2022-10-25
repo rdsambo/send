@@ -19,18 +19,18 @@ io.on("connection", async (socket) => {
       console.log(data);
       io.emit("server_to_app", { chatID: chatID , msg: data.msg} );
     });
+
+    socket.on("close_to_server", (data) =>  {
+      console.log("close_to_server");
+      console.log(data);
+      io.emit("close_app", { chatID: chatID } );
+    });
   } else {
     // console.log("sem chatID");
     socket.on("app_to_server", (data) =>  {
       console.log(data);
       data = JSON.parse(data);
       io.to(data.to).emit("server_to_browser", { msg: data.msg} );
-    });
-
-    socket.on("close_to_server", (data) =>  {
-      console.log("close_to_server");
-      console.log(data);
-      io.emit("close_app", { chatID: chatID } );
     });
   }
 });
