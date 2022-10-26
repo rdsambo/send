@@ -1,12 +1,23 @@
 const { log } = require("console");
+const { readFileSync } = require("fs");
+const { createServer } = require("https");
+// const Express = require("express")();
+// const Http = require("http").Server(Express);
+// const io = require("socket.io")(Http, {
+//   cors: {
+//     origin: "*",
+//   },
+// });
+const { Server } = require("socket.io");
+const httpServer = createServer({
+  key: readFileSync("/etc/letsencrypt/live/premiummali.mali-tech.co.za/privkey.pem"),
+  cert: readFileSync("/etc/letsencrypt/live/premiummali.mali-tech.co.za/cert.pem")
+});
 
-const Express = require("express")();
-const Http = require("http").Server(Express);
-const io = require("socket.io")(Http, {
+const io = new Server(httpServer, {
   cors: {
     origin: "*",
-  },
-});
+  }})
 
 io.on("connection", async (socket) => {
   const chatID = socket.handshake.auth.chatID;
@@ -42,6 +53,10 @@ io.on("disconnection", (reason) => {
   console.log(reason);
 });
 
-Http.listen(4040, () => {
-  console.log("Server up and running...");
+// Http.listen(4040, () => {
+//   console.log("Server up and running...");
+// });
+
+httpServer.listen(4040, ()=>{
+  console.log("Server secure up and running...");
 });
