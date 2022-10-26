@@ -39,6 +39,7 @@ io.on("connection", async (socket) => {
       // socket.disconnect();
     });
   } else {
+    console.log(socket);
     // console.log("sem chatID");
     socket.on("app_to_server", (data) =>  {
       console.log(data);
