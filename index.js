@@ -10,8 +10,8 @@ const { createServer } = require("https");
 // });
 const { Server } = require("socket.io");
 const httpServer = createServer({
-  key: readFileSync("/etc/letsencrypt/live/premiummali.mali-tech.co.za/privkey.pem"),
-  cert: readFileSync("/etc/letsencrypt/live/premiummali.mali-tech.co.za/cert.pem")
+  key: readFileSync("/home/git/privkey.pem"),
+  cert: readFileSync("/home/git/cert.pem")
 });
 
 const io = new Server(httpServer, {
